@@ -1,1 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | AI Projects for Non-Techies</title>
+    <meta name="description" content="Find all the downloadable resources, scripts, and tools from AI Projects for Non-Techies.">
+    <meta name="keywords" content="AI resources, AI tools, downloadable scripts, AI guides, free AI tools">
+    
+    <meta property="og:title" content="Resources | AI Projects for Non-Techies">
+    <meta property="og:description" content="Find all the downloadable resources, scripts, and tools from AI Projects for Non-Techies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abhishek20081992.github.io/AI-Projects-for-Non-Techies/resources/index.html">
+    <meta property="og:image" content="https://placehold.co/1200x630/1a202c/667eea?text=Resources+Banner"> 
+    <meta property="og:site_name" content="Your AI Project Blog">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for gradients and subtle effects, same as index.html */
+        body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
+       .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+       .text-gradient { background: linear-gradient(45deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; }
+        footer { background-color: #1a202c; }
+    </style>
+</head>
+<body class="text-gray-800">
+    <header class="bg-gray-900 text-white py-6 shadow-lg rounded-b-xl">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
+            <h1 class="text-3xl font-bold mb-4 md:mb-0">
+                <a href="../index.html" class="hover:text-purple-400 transition duration-300">AI Projects for Non-Techies</a>
+            </h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="../index.html" class="text-lg hover:text-purple-400 transition duration-300">Blog</a></li>
+                    <li><a href="index.html" class="text-lg hover:text-purple-400 transition duration-300">Resources</a></li>
+                    <li><a href="../about.html" class="text-lg hover:text-purple-400 transition duration-300">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 content-area">
+        <article class="bg-white p-8 md:p-12 rounded-xl shadow-lg">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 leading-tight">Our AI Project Resources</h1>
+            <p class="text-lg text-gray-600 mb-8">Here you'll find all the downloadable scripts, templates, and guides from our blog posts.</p>
+            
+            <div class="prose max-w-none text-lg leading-relaxed text-gray-700">
+                <h2 class="text-3xl font-bold mt-10 mb-5 text-gray-900">
+                    <span class="text-gradient">Gmail Cleaner Script:</span> Tame Your Inbox
+                </h2>
+                <p>This is the Google Apps Script that powers our AI-driven Gmail cleaner. It fetches, analyzes, and helps you manage your old, unread emails. Download the PDF for the full script and setup instructions.</p>
+                <p class="my-8 p-4 bg-purple-50 rounded-lg border border-purple-200 text-purple-800 text-center">
+                    ✨ Get the full script and detailed setup instructions here:
+                    <button id="download-script-btn" class="inline-block bg-purple-600 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-purple-700 transform hover:scale-105 transition duration-300 mt-4">
+                        Download Gmail Cleaner Script
+                    </button>
+                </p>
+                
+                <h2 class="text-3xl font-bold mt-10 mb-5 text-gray-900">
+                    <span class="text-gradient">Coming Soon:</span> More AI Tools!
+                </h2>
+                <p>We're constantly building new AI projects to simplify your life. Check back soon for more downloadable resources!</p>
+
+                <p class="mt-10 text-center text-xl text-gray-700">Have a resource you'd like to see? Let us know!</p>
+            </div>
+        </article>
+        
+        <div id="downloadModal" class="modal">
+            <div class="modal-content bg-white p-8 rounded-xl shadow-xl text-center">
+                <span class="close-button">&times;</span>
+                <h3 class="text-2xl font-bold mb-6 text-gray-900">Download Your Script</h3>
+                <p class="text-gray-700 mb-6">Please provide your details to download the Gmail Cleaner Script PDF.</p>
+                <form id="downloadForm" class="space-y-4">
+                    <div>
+                        <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                    <div>
+                        <input type="email" name="email" placeholder="Your Email ID" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                    <div>
+                        <input type="text" name="industry" placeholder="Your Industry" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                    <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-purple-700 transform hover:scale-105 transition duration-300">
+                        Submit & Download
+                    </button>
+                </form>
+                <a id="actualDownloadLink" style="display:none;" download="gmail-cleaner-script.pdf"></a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-8 rounded-t-xl shadow-inner">
+        <div class="container mx-auto text-center px-4">
+            <p class="mb-2">&copy; <span id="current-year-resources"></span> Your Name/Project Name. All rights reserved.</p>
+            <p class="text-sm">Built with AI, for you. | 
+                <a href="https://github.com/abhishek20081992/AI-Projects-for-Non-Techies" target="_blank" class="text-purple-400 hover:underline">View on GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year-resources').textContent = new Date().getFullYear();
+    </script>
+    <script src="../js/script.js"></script> </body>
+</html>
 

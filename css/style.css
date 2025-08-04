@@ -1,1 +1,143 @@
+/* Custom CSS for gradients and subtle effects */
+body {
+    /* Tailwind handles font-family via the CDN link and body class */
+    /* background-color is set in body tag with Tailwind class, but a fallback is here */
+    background-color: #f0f4f8; /* Light background for the overall page */
+}
 
+/* Hero section background gradient */
+.hero-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Purple-blue gradient */
+}
+
+/* Text gradient for headings */
+.text-gradient {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* Fallback for browsers not supporting text-fill-color */
+}
+
+/* Card hover effect with subtle glow */
+.card-glow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-glow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3); /* Subtle blue glow */
+}
+
+/* Footer background - specified here for clarity, but could also be a Tailwind class */
+footer {
+    background-color: #1a202c; /* Darker background for footer */
+}
+
+/* Basic styling for the 'prose' content within blog posts for better readability.
+   Tailwind's @tailwindcss/typography plugin would handle this more robustly,
+   but for a simple CDN setup, we add some manual adjustments. */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    margin-top: 1.5em; /* Add space above headings */
+    margin-bottom: 0.75em; /* Add space below headings */
+    font-weight: 700; /* Ensure headings are bold */
+    line-height: 1.2;
+}
+
+.prose p {
+    margin-bottom: 1em; /* Space between paragraphs */
+}
+
+.prose ul, .prose ol {
+    margin-bottom: 1em;
+    padding-left: 1.5em; /* Indent lists */
+}
+
+.prose li {
+    margin-bottom: 0.5em; /* Space between list items */
+}
+
+.prose a {
+    text-decoration: underline; /* Ensure links are underlined for clarity */
+}
+
+.prose a:hover {
+    color: #5a67d8; /* Hover color for links */
+}
+
+/* Responsive adjustments for the main content area */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px; /* Reduce padding on smaller screens */
+    }
+    .hero-gradient {
+        padding: 40px 20px; /* Adjust padding for hero section */
+    }
+    .hero h2 {
+        font-size: 3em; /* Smaller font size for hero heading */
+    }
+    .hero p {
+        font-size: 1em; /* Smaller font size for hero paragraph */
+    }
+    .post-grid {
+        grid-template-columns: 1fr; /* Stack cards on small screens */
+    }
+    .content-area article {
+        padding: 20px; /* Adjust padding for blog post content */
+    }
+    .content-area .post-title {
+        font-size: 2.5em; /* Smaller font for post title */
+    }
+    .content-area h2 {
+        font-size: 2em; /* Smaller font for subheadings */
+    }
+    .content-area h3 {
+        font-size: 1.7em; /* Smaller font for sub-subheadings */
+    }
+}
+
+/* Modal specific CSS (added to style.css) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}

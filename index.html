@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Projects for Non-Techies | Your Name/Project Name</title>
+    <meta name="description" content="Demystifying AI projects and tools for everyone. Learn how to leverage AI without being a tech expert. Practical guides, resources, and real-world applications.">
+    <meta name="keywords" content="AI for non-techies, AI projects, AI tools, artificial intelligence, practical AI, AI guides, AI resources, no-code AI, low-code AI, AI automation, AI authority">
+    
+    <!-- Open Graph / Social Media Tags for AI SEO -->
+    <meta property="og:title" content="AI Projects for Non-Techies | Your Name/Project Name">
+    <meta property="og:description" content="Demystifying AI projects and tools for everyone. Learn how to leverage AI without being a tech expert. Practical guides, resources, and real-world applications.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourusername.github.io/"> <!-- IMPORTANT: Update with your actual GitHub Pages URL -->
+    <meta property="og:image" content="https://placehold.co/1200x630/1a202c/667eea?text=AI+Blog+Banner"> <!-- Placeholder: Replace with your actual banner image URL -->
+    <meta property="og:site_name" content="Your AI Project Blog">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <style>
+        /* Custom CSS for gradients and subtle effects, not possible with pure Tailwind classes */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light background for the overall page */
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Purple-blue gradient */
+        }
+        .text-gradient {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent; /* Fallback for browsers not supporting text-fill-color */
+        }
+        .card-glow {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3); /* Subtle blue glow */
+        }
+        /* Custom styles for the footer background - can be done with Tailwind but for consistency with header */
+        footer {
+            background-color: #1a202c; /* Darker background for footer */
+        }
+
+        /* Modal specific CSS */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <header class="bg-gray-900 text-white py-6 shadow-lg rounded-b-xl">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
+            <h1 class="text-3xl font-bold mb-4 md:mb-0">
+                <a href="/index.html" class="hover:text-purple-400 transition duration-300">AI Projects for Non-Techies</a>
+            </h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="/index.html" class="text-lg hover:text-purple-400 transition duration-300">Blog</a></li>
+                    <li><a href="/resources/index.html" class="text-lg hover:text-purple-400 transition duration-300">Resources</a></li>
+                    <li><a href="/about.html" class="text-lg hover:text-purple-400 transition duration-300">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <section class="hero-gradient text-white p-16 rounded-2xl shadow-xl mb-12 text-center">
+            <h2 class="text-5xl font-extrabold mb-6 leading-tight">
+                Demystifying AI, <span class="block">One Project at a Time.</span>
+            </h2>
+            <p class="text-xl max-w-3xl mx-auto mb-8 opacity-90">
+                Tired of the AI jargon? We break down practical AI projects, tools, and walk-throughs so <span class="font-bold">you</span> can leverage this powerful tech, no coding degree required. Build your AI authority, starting now!
+            </p>
+            <a href="/blog/taming-inbox-beast.html" class="inline-block bg-white text-purple-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transform hover:scale-105 transition duration-300">
+                Start Learning
+            </a>
+        </section>
+
+        <section class="latest-posts">
+            <h3 class="text-4xl font-bold text-center mb-10 text-gradient">Latest AI Adventures</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Example Blog Post Card -->
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden card-glow">
+                    <img src="https://placehold.co/600x400/3498db/ffffff?text=Inbox+Cleaner+AI" alt="AI-Powered Gmail Cleaner Project Image" class="w-full h-52 object-cover border-b border-gray-200">
+                    <div class="p-6 flex flex-col h-full">
+                        <h4 class="text-2xl font-semibold mb-3 leading-snug">
+                            <a href="/blog/taming-inbox-beast.html" class="text-gray-900 hover:text-purple-600 transition duration-300">Taming the Inbox Beast: My AI-Powered Gmail Cleaner</a>
+                        </h4>
+                        <p class="text-sm text-gray-500 mb-4">By [Your Name] on [Date]</p>
+                        <p class="text-gray-700 text-base mb-6 flex-grow">
+                            Let's be brutally honest. Your Gmail inbox? It's probably a chaotic, overflowing digital dumpster fire. Mine certainly was...
+                        </p>
+                        <a href="/blog/taming-inbox-beast.html" class="text-purple-600 font-semibold hover:underline self-start">Read More &rarr;</a>
+                    </div>
+                </article>
+                
+                <!-- Add more post-card articles here as you write new blogs -->
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden card-glow">
+                    <img src="https://placehold.co/600x400/2ecc71/ffffff?text=AI+Content+Creation" alt="AI for Content Creation Project Image" class="w-full h-52 object-cover border-b border-gray-200">
+                    <div class="p-6 flex flex-col h-full">
+                        <h4 class="text-2xl font-semibold mb-3 leading-snug">
+                            <a href="/blog/ai-for-content-creation.html" class="text-gray-900 hover:text-purple-600 transition duration-300">AI for Content Creation: Beyond ChatGPT</a>
+                        </h4>
+                        <p class="text-sm text-gray-500 mb-4">By [Your Name] on [Date]</p>
+                        <p class="text-gray-700 text-base mb-6 flex-grow">
+                            Think AI can only write basic text? Think again. We explore advanced AI tools for generating stunning visuals, compelling copy, and even video scripts...
+                        </p>
+                        <a href="/blog/ai-for-content-creation.html" class="text-purple-600 font-semibold hover:underline self-start">Read More &rarr;</a>
+                    </div>
+                </article>
+                <!-- End Example Blog Post Card -->
+
+                <!-- Placeholder for a third card if you want to add more -->
+                <article class="bg-white rounded-xl shadow-lg overflow-hidden card-glow">
+                    <img src="https://placehold.co/600x400/f39c12/ffffff?text=AI+Automation+Project" alt="AI Automation Project Image" class="w-full h-52 object-cover border-b border-gray-200">
+                    <div class="p-6 flex flex-col h-full">
+                        <h4 class="text-2xl font-semibold mb-3 leading-snug">
+                            <a href="/blog/ai-automation-basics.html" class="text-gray-900 hover:text-purple-600 transition duration-300">AI Automation Basics: Your First Steps</a>
+                        </h4>
+                        <p class="text-sm text-gray-500 mb-4">By [Your Name] on [Date]</p>
+                        <p class="text-gray-700 text-base mb-6 flex-grow">
+                            Feeling overwhelmed by AI? Start here! We'll guide you through setting up simple AI automations that save you time and headaches...
+                        </p>
+                        <a href="/blog/ai-automation-basics.html" class="text-purple-600 font-semibold hover:underline self-start">Read More &rarr;</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-8 rounded-t-xl shadow-inner">
+        <div class="container mx-auto text-center px-4">
+            <p class="mb-2">&copy; <span id="current-year"></span> Your Name/Project Name. All rights reserved.</p>
+            <p class="text-sm">Built with AI, for you. | 
+                <a href="https://github.com/yourusername/your-repo-name" target="_blank" class="text-purple-400 hover:underline">View on GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+    <script src="/js/script.js"></script> <!-- Ensure this is loaded at the end of body for modal functionality -->
+</body>
+</html>

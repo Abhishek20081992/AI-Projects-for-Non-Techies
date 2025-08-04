@@ -1,13 +1,13 @@
-```javascript
 // js/script.js
 document.addEventListener('DOMContentLoaded', () => {
     // Get the modal and the button that opens it
     const modal = document.getElementById('downloadModal');
     const downloadBtn = document.getElementById('download-script-btn');
-    const closeBtn = document.getElementsByClassName('close-button')[0];
+    const closeBtn = document.getElementsByClassName('close-button'); // Get the first element with this class
     const downloadForm = document.getElementById('downloadForm');
     const downloadLink = document.getElementById('actualDownloadLink'); // Hidden link for download
 
+    // Only attach event listener if the button exists on the page
     if (downloadBtn) {
         downloadBtn.onclick = () => {
             modal.style.display = 'flex'; // Use flex to center the modal
@@ -55,7 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Trigger the download
                     // IMPORTANT: Ensure this URL points to your PDF in the resources folder on GitHub
-                    const fileUrl = '/resources/gmail-cleaner-script.pdf'; 
+                    // This path is relative to the root of your GitHub Pages site
+                    const fileUrl = 'resources/gmail-cleaner-script.pdf'; 
                     downloadLink.href = fileUrl;
                     downloadLink.click(); // Programmatically click the hidden link
                     
@@ -71,4 +72,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-

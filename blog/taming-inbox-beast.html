@@ -3,66 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <Taming the Inbox Beast: How I Built My Own AI-Powered Gmail Cleaner
->[BLOG POST TITLE] | AI Projects for Non-Techies</Taming the Inbox Beast: How I Built My Own AI-Powered Gmail Cleaner>
-    <meta name="description" content="[A concise summary of your blog post content for SEO]">
-    <meta name="keywords" content="[Keywords relevant to this specific blog post]">
+    <!-- CORRECTED: The <title> tag should enclose the title text -->
+    <title>Taming the Inbox Beast: My AI-Powered Gmail Cleaner | AI Projects for Non-Techies</title>
+    <meta name="description" content="Learn how to build your own AI-powered Gmail cleaner to manage old, unread emails. Practical guide for non-techies to leverage Google Apps Script and Gemini AI.">
+    <meta name="keywords" content="AI for email, Gmail cleaner, AI automation, Google Apps Script, Gemini AI, inbox zero, productivity, non-techie AI projects">
     
-    <!-- Open Graph / Social Media Tags for AI SEO -->
-    <meta property="og:title" content="[Taming the Inbox Beast: How I Built My Own AI-Powered Gmail Cleaner] | AI Projects for Non-Techies">
-    <meta property="og:description" content="[A concise summary of your blog post content for social media]">
-    <meta property="og:type" content="Your Inbox is a Digital Landfill. Mine Used to Be.
-Let's be brutally honest. Your Gmail inbox? It's probably a chaotic, overflowing digital dumpster fire. Mine certainly was. Years of "I'll get to that later" emails, forgotten newsletters, and promotional spam that somehow bypassed every filter known to man. We're talking thousands of unread messages, lurking in the shadows, silently judging your productivity. It's not just an annoyance; it's a mental burden. Every time you open Gmail, that unread count screams at you, a constant reminder of digital debt.
-I needed a solution. Not just another "mark all as read" button – that's like putting a band-aid on a gaping wound. I needed intelligence. I needed automation. I needed a way to look at those ancient, unread emails, figure out if they were actually junk, and then nuke them from orbit (or at least send them to the trash). And I wanted to do it without paying for yet another SaaS subscription.
-So, I did what any self-respecting tech veteran would do: I decided to build it myself, with a little help from Google Apps Script and the mighty Gemini AI.
-The Odyssey: Challenges, Headaches, and Glorious Victories
-Building anything worthwhile always comes with its share of "why isn't this working?!" moments. This project was no different. Think of it as a digital obstacle course, and I, your humble narrator, was doing the commando crawl.
-Challenge 1: The Great Email Flood (Gmail's 500-Email Limit)
-My first brilliant idea: "Just pull all 2000 oldest unread emails from my inbox into a Google Sheet!" Simple, right?
-Reality Check: Google's GmailApp.search function has a hard limit of 500 threads per call. It's like trying to drink from a firehose with a thimble. My script immediately threw an "Argument max cannot exceed 500" error. Rude.
-Resolution: We pivoted to batch processing. Instead of one massive gulp, the script now sips emails in batches of 500. It keeps track of its progress using Google's PropertiesService, so each time you run fetchEmails, it picks up where it left off. A bit of a dance, but it gets the job done without choking the system. Patience, my friend, is a virtue... and a necessity when dealing with APIs.
-Challenge 2: The Apps Script Time-Out (The 6-Minute Wall)
-Once we started fetching more emails, another beast reared its head: the Google Apps Script execution time limit. Scripts running too long (typically over 6 minutes) get unceremoniously terminated. My initial attempts to fetch and then immediately AI-summarize thousands of emails in one go? They timed out faster than a bad date.
-Resolution: More iterative processing. Both fetchEmails and analyzeEmailsWithAI are now designed to be run repeatedly. Each run handles a manageable chunk of work, ensuring it finishes within the time limit. It means a few more clicks from you, but hey, it works! And it gives you a chance to grab a coffee while the AI does its thing.
-Challenge 3: The AI's "Too Much Love" (429 Too Many Requests)
-Once the emails were in the sheet, it was time for the AI to shine. My initial thought was to unleash Gemini on 500 emails at once for analysis.
-Reality Check: The Gemini API, bless its heart, has its own rate limits. It quickly responded with a polite (but firm) 429 Too Many Requests error. Turns out, even AI needs a moment to breathe between tasks.
-Resolution: We dialled back the AI batch size to a conservative 50 emails. This significantly reduces the load on the API, allowing the retryFetch function (with its exponential backoff) to handle any transient hiccups smoothly. It's slower, yes, but it's reliable. Sometimes, the tortoise does win the race.
-Challenge 4: The Elusive API Key (The 403 Forbidden Mystery)
-When integrating the Gemini API, I initially assumed the environment would just... know my API key. After all, I was working within a Google ecosystem!
-Reality Check: A persistent 403 Forbidden error quickly disabused me of that notion. Google Apps Script, while powerful, needs explicit instructions. The API key wasn't being passed correctly.
-Resolution: The fix was embarrassingly simple: manually pasting the Gemini API key directly into the API_KEY constant in the script. Lesson learned: sometimes you just gotta do it yourself, even if you're trying to automate everything.
-The Current State: Power, Limitations, and Future Dreams
-So, where are we now? We have a robust Google Apps Script that can:
-Fetch Old Unread Emails: Specifically from your main inbox (no promotions or social clutter) and within a custom date range (like 2017-2019), in manageable batches.
-AI Summarize: Leverage the Gemini API to analyze the sender, subject, and snippet of each email, classifying it as "Junk," "Promotional," or "Useful," along with a brief reason. This populates the "AI Summary" column.
-AI-Driven Deletion: The coolest part. You can now tell the AI (via a simple text instruction in the script's prompt) to delete emails based on criteria like their AI classification, sender, or year. The AI interprets your request, marks the emails in the sheet, and then automatically triggers the deletion process.
-Manual Action: You can still manually mark emails in the "Action" column as "DELETE" or "READ" and process them.
-The Not-So-Glamorous Limitations (Because Nothing's Perfect)
-While this script is a powerful tool for reclaiming your inbox, it's not a magic bullet (yet):
-Manual Iteration: You still need to manually run fetchEmails and analyzeEmailsWithAI repeatedly until all desired emails are processed. It's not a fully automated, set-it-and-forget-it background process.
-Google Apps Script Quotas: There are daily limits on how many Gmail operations and external API calls you can make. If you have a truly gargantuan inbox, you might hit these and need to wait 24 hours.
-AI Accuracy: While good, the AI isn't infallible. It relies solely on the subject, sender, and snippet. Always review the "AI Summary" before committing to mass deletions, especially with the AI-driven deletion function. Don't blame the bot if it trashes your wedding photos because it thought "Save the Date" was promotional junk – you still hit 'OK'!
-No Direct PDF Output: I can't magically generate a PDF of the script from here. However, you can easily copy the entire script from the Apps Script editor, paste it into a document (like Google Docs or Word), and then save or print that document as a PDF.
-Get the Script and Reclaim Your Inbox!
-Ready to turn your inbox from a digital landfill into a pristine paradise? Here's the script that made it all possible.
-[Instructions for user to copy the script into a document and save as PDF]
-To get the full script in a PDF format:
-Go to your Google Apps Script editor where you've been working on the GMail Cleaner project.
-Select all the code in the Code.gs file (Ctrl+A or Cmd+A).
-Copy the code (Ctrl+C or Cmd+C).
-Open a new Google Doc (or any word processor).
-Paste the code into the document (Ctrl+V or Cmd+V).
-Go to File > Download > PDF Document (.pdf).
-This project has been an absolute blast, transforming a frustrating daily chore into a powerful, AI-assisted workflow. Go forth, clean your inbox, and tell those junk emails who's boss!
-">
-    <meta property="og:url" content="[https://abhishek20081992.github.io/blog/taming-inbox-beast.html](https://yourusername.github.io/blog/)[post-filename].html"> <!-- IMPORTANT: Update with your actual URL -->
-    <meta property="og:image" content="[https://placehold.co/1200x630/1a202c/667eea?text=Blog+Post+Banner](https://placehold.co/1200x630/1a202c/667eea?text=Blog+Post+Banner)"> <!-- Placeholder: Replace with your actual banner image URL for this post -->
+    <!-- Open Graph / Social Media Tags for AI SEO (Corrected syntax) -->
+    <meta property="og:title" content="Taming the Inbox Beast: My AI-Powered Gmail Cleaner | AI Projects for Non-Techies">
+    <meta property="og:description" content="My AI-powered Gmail cleaner is here to rescue your inbox from digital chaos. Learn how I built it with Google Apps Script and Gemini AI.">
+    <meta property="og:type" content="article">
+    <!-- IMPORTANT: Update with your actual, full blog post URL -->
+    <meta property="og:url" content="https://abhishek20081992.github.io/blog/taming-inbox-beast.html">
+    <!-- Placeholder: Replace with your actual banner image URL for this post -->
+    <meta property="og:image" content="https://placehold.co/1200x630/1a202c/667eea?text=Gmail+Cleaner+Blog+Banner"> 
     <meta property="og:site_name" content="Your AI Project Blog">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap)" rel="stylesheet">
+    <!-- Tailwind CSS CDN (Corrected syntax) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Corrected syntax) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="text-gray-800">
     <header class="bg-gray-900 text-white py-6 shadow-lg rounded-b-xl">
@@ -82,28 +41,63 @@ This project has been an absolute blast, transforming a frustrating daily chore 
 
     <main class="container mx-auto px-4 py-12 content-area">
         <article class="bg-white p-8 md:p-12 rounded-xl shadow-lg">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 leading-tight">[BLOG POST TITLE HERE]</h1>
-            <p class="text-lg text-gray-600 mb-8">Published on [Date] by [Your Name]</p>
-            <img src="[https://placehold.co/1000x562/cccccc/333333?text=Blog+Post+Hero+Image](https://placehold.co/1000x562/cccccc/333333?text=Blog+Post+Hero+Image)" alt="[Descriptive Alt Text for SEO]" class="w-full h-auto max-h-[450px] object-cover rounded-lg mb-10 shadow-md">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 leading-tight">Taming the Inbox Beast: How I Built My Own AI-Powered Gmail Cleaner</h1>
+            <p class="text-lg text-gray-600 mb-8">Published on [4/08/2025] by [Abhishek Sharma]</p>
+            <img src="https://placehold.co/1000x562/cccccc/333333?text=Gmail+Cleaner+Hero+Image" alt="Image of a clean email inbox with AI elements" class="w-full h-auto max-h-[450px] object-cover rounded-lg mb-10 shadow-md">
             
             <div class="prose max-w-none text-lg leading-relaxed text-gray-700">
-                <p>This is where your engaging introduction to the blog post goes. Start strong, just like your LinkedIn posts!</p>
+                <p>Your Inbox is a Digital Landfill. Mine Used to Be. Let's be brutally honest. Your Gmail inbox? It's probably a chaotic, overflowing digital dumpster fire. Mine certainly was. Years of "I'll get to that later" emails, forgotten newsletters, and promotional spam that somehow bypassed every filter known to man. We're talking thousands of unread messages, lurking in the shadows, silently judging your productivity. It's not just an annoyance; it's a mental burden. Every time you open Gmail, that unread count screams at you, a constant reminder of digital debt.</p>
+                <p>I needed a solution. Not just another "mark all as read" button – that's like putting a band-aid on a gaping wound. I needed intelligence. I needed automation. I needed a way to look at those ancient, unread emails, figure out if they were actually junk, and then nuke them from orbit (or at least send them to the trash). And I wanted to do it without paying for yet another SaaS subscription.</p>
+                <p>So, I did what any self-respecting tech veteran would do: I decided to build it myself, with a little help from Google Apps Script and the mighty Gemini AI.</p>
 
                 <h2 class="text-3xl font-bold mt-10 mb-5 text-gray-900">
-                    <span class="text-gradient">Problem/Challenge:</span> [Subheading 1]
+                    <span class="text-gradient">The Odyssey:</span> Challenges, Headaches, and Glorious Victories
                 </h2>
-                <p>Detail the problem or challenge you're addressing with AI. Use clear, non-technical language. Remember your audience!</p>
-                <p>For example, you could elaborate on the "Inbox Beast" here, explaining the frustration without getting bogged down in code.</p>
+                <p>Building anything worthwhile always comes with its share of "why isn't this working?!" moments. This project was no different. Think of it as a digital obstacle course, and I, your humble narrator, was doing the commando crawl.</p>
 
-                <h3 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">The AI Solution: [Sub-subheading]</h3>
-                <p>Explain how AI provides a solution. Break down complex ideas into simple, relatable steps. Use analogies if helpful.</p>
-                <p>This is where you'd talk about how your Gmail cleaner script works conceptually, not line-by-line code.</p>
+                <h3 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">Challenge 1: The Great Email Flood (Gmail's 500-Email Limit)</h3>
+                <p>My first brilliant idea: "Just pull all 2000 oldest unread emails from my inbox into a Google Sheet!" Simple, right?</p>
+                <p><strong>Reality Check:</strong> Google's `GmailApp.search` function has a hard limit of 500 threads per call. It's like trying to drink from a firehose with a thimble. My script immediately threw an "Argument max cannot exceed 500" error. Rude.</p>
+                <p><strong>Resolution:</strong> We pivoted to **batch processing**. Instead of one massive gulp, the script now sips emails in batches of 500. It keeps track of its progress using Google's `PropertiesService`, so each time you run `fetchEmails`, it picks up where it left off. A bit of a dance, but it gets the job done without choking the system. Patience, my friend, is a virtue... and a necessity when dealing with APIs.</p>
+
+                <h3 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">Challenge 2: The Apps Script Time-Out (The 6-Minute Wall)</h3>
+                <p>Once we started fetching more emails, another beast reared its head: the Google Apps Script execution time limit. Scripts running too long (typically over 6 minutes) get unceremoniously terminated. My initial attempts to fetch and then immediately AI-summarize thousands of emails in one go? They timed out faster than a bad date.</p>
+                <p><strong>Resolution:</strong> More **iterative processing**. Both `fetchEmails` and `analyzeEmailsWithAI` are now designed to be run repeatedly. Each run handles a manageable chunk of work, ensuring it finishes within the time limit. It means a few more clicks from you, but hey, it works! And it gives you a chance to grab a coffee while the AI does its thing.</p>
+
+                <h3 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">Challenge 3: The AI's "Too Much Love" (429 Too Many Requests)</h3>
+                <p>Once the emails were in the sheet, it was time for the AI to shine. My initial thought was to unleash Gemini on 500 emails at once for analysis.</p>
+                <p><strong>Reality Check:</strong> The Gemini API, bless its heart, has its own rate limits. It quickly responded with a polite (but firm) `429 Too Many Requests` error. Turns out, even AI needs a moment to breathe between tasks.</p>
+                <p><strong>Resolution:</strong> We dialled back the **AI batch size to a conservative 50 emails**. This significantly reduces the load on the API, allowing the `retryFetch` function (with its exponential backoff) to handle any transient hiccups smoothly. It's slower, yes, but it's reliable. Sometimes, the tortoise *does* win the race.</p>
+
+                <h3 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">Challenge 4: The Elusive API Key (The 403 Forbidden Mystery)</h3>
+                <p>When integrating the Gemini API, I initially assumed the environment would just... know my API key. After all, I was working within a Google ecosystem!</p>
+                <p><strong>Reality Check:</strong> A persistent `403 Forbidden` error quickly disabused me of that notion. Google Apps Script, while powerful, needs explicit instructions. The API key wasn't being passed correctly.</p>
+                <p><strong>Resolution:</strong> The fix was embarrassingly simple: **manually pasting the Gemini API key** directly into the `API_KEY` constant in the script. Lesson learned: sometimes you just gotta do it yourself, even if you're trying to automate everything.</p>
 
                 <h2 class="text-3xl font-bold mt-10 mb-5 text-gray-900">
-                    <span class="text-gradient">Walkthrough/How-To:</span> [Subheading 2]
+                    <span class="text-gradient">The Current State:</span> Power, Limitations, and Future Dreams
                 </h2>
-                <p>Provide a step-by-step guide or walk-through of your project. Use numbered lists or clear paragraphs.</p>
-                <p>You can refer to your "GMail Cleaner Setup Instructions" here and then add a button to trigger the download pop-up.</p>
+                <p>So, where are we now? We have a robust Google Apps Script that can:</p>
+                <ul>
+                    <li><strong>Fetch Old Unread Emails:</strong> Specifically from your main inbox (no promotions or social clutter) and within a custom date range (like 2017-2019), in manageable batches.</li>
+                    <li><strong>AI Summarize:</strong> Leverage the Gemini API to analyze the sender, subject, and snippet of each email, classifying it as "Junk," "Promotional," or "Useful," along with a brief reason. This populates the "AI Summary" column.</li>
+                    <li><strong>AI-Driven Deletion:</strong> The coolest part. You can now tell the AI (via a simple text instruction in the script's prompt) to delete emails based on criteria like their AI classification, sender, or year. The AI interprets your request, marks the emails in the sheet, and then automatically triggers the deletion process.</li>
+                    <li><strong>Manual Action:</strong> You can still manually mark emails in the "Action" column as "DELETE" or "READ" and process them.</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">The Not-So-Glamorous Limitations (Because Nothing's Perfect)</h3>
+                <p>While this script is a powerful tool for reclaiming your inbox, it's not a magic bullet (yet):</p>
+                <ul>
+                    <li><strong>Manual Iteration:</strong> You still need to manually run `fetchEmails` and `analyzeEmailsWithAI` repeatedly until all desired emails are processed. It's not a fully automated, set-it-and-forget-it background process.</li>
+                    <li><strong>Google Apps Script Quotas:</strong> There are daily limits on how many Gmail operations and external API calls you can make. If you have a truly gargantuan inbox, you might hit these and need to wait 24 hours.</li>
+                    <li><strong>AI Accuracy:</strong> While good, the AI isn't infallible. It relies solely on the subject, sender, and snippet. Always review the "AI Summary" before committing to mass deletions, especially with the AI-driven deletion function. Don't blame the bot if it trashes your wedding photos because it thought "Save the Date" was promotional junk – you still hit 'OK'!</li>
+                    <li><strong>No Direct PDF Output:</strong> I can't magically generate a PDF of the script from here. However, you can easily copy the entire script from the Apps Script editor, paste it into a document (like Google Docs or Word), and then save or print that document as a PDF.</li>
+                </ul>
+
+                <h2 class="text-3xl font-bold mt-10 mb-5 text-gray-900">
+                    <span class="text-gradient">Get the Script and Reclaim Your Inbox!</span>
+                </h2>
+                <p>Ready to turn your inbox from a digital landfill into a pristine paradise? Here's the script that made it all possible.</p>
 
                 <p class="my-8 p-4 bg-purple-50 rounded-lg border border-purple-200 text-purple-800 text-center">
                     ✨ Ready to clean your inbox? Get the full script and detailed setup instructions here:
@@ -112,14 +106,7 @@ This project has been an absolute blast, transforming a frustrating daily chore 
                     </button>
                 </p>
 
-                <h2 class="text-3xl font-bold mt-10 mb-5 text-gray-900">
-                    <span class="text-gradient">Lessons Learned & Future Ideas:</span> [Subheading 3]
-                </h2>
-                <p>Share the challenges you faced (like API limits or execution time-outs) and how you overcame them. This builds authority and relatability.</p>
-                <p>Talk about the "Not-So-Glamorous Limitations" from your blog post here, and maybe hint at future improvements.</p>
-
-                <h3 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">Building Your AI Authority: [Sub-subheading]</h3>
-                <p>Explain how this project (and others you'll share) helps you build your expertise and why others should pay attention.</p>
+                <p>This project has been an absolute blast, transforming a frustrating daily chore into a powerful, AI-assisted workflow. Go forth, clean your inbox, and tell those junk emails who's boss!</p>
 
                 <p class="mt-10 text-center text-xl text-gray-700">What are your thoughts on this AI project? Share in the comments below! 👇</p>
             </div>
@@ -134,7 +121,7 @@ This project has been an absolute blast, transforming a frustrating daily chore 
         <div class="container mx-auto text-center px-4">
             <p class="mb-2">&copy; <span id="current-year-post"></span> Your Name/Project Name. All rights reserved.</p>
             <p class="text-sm">Built with AI, for you. | 
-                <a href="[https://github.com/yourusername/your-repo-name](https://github.com/yourusername/your-repo-name)" target="_blank" class="text-purple-400 hover:underline">View on GitHub</a>
+                <a href="https://github.com/yourusername/your-repo-name" target="_blank" class="text-purple-400 hover:underline">View on GitHub</a>
             </p>
         </div>
     </footer>
@@ -143,5 +130,29 @@ This project has been an absolute blast, transforming a frustrating daily chore 
         document.getElementById('current-year-post').textContent = new Date().getFullYear();
     </script>
     <script src="/js/script.js"></script> <!-- Ensure this is loaded at the end of body for modal functionality -->
+    <!-- Modal HTML (add this at the very end of your body, just before the closing </body> tag) -->
+    <div id="downloadModal" class="modal">
+        <div class="modal-content bg-white p-8 rounded-xl shadow-xl text-center">
+            <span class="close-button">&times;</span>
+            <h3 class="text-2xl font-bold mb-6 text-gray-900">Download Your Script</h3>
+            <p class="text-gray-700 mb-6">Please provide your details to download the Gmail Cleaner Script PDF.</p>
+            <form id="downloadForm" class="space-y-4">
+                <div>
+                    <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                </div>
+                <div>
+                    <input type="email" name="email" placeholder="Your Email ID" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                </div>
+                <div>
+                    <input type="text" name="industry" placeholder="Your Industry" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                </div>
+                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-purple-700 transform hover:scale-105 transition duration-300">
+                    Submit & Download
+                </button>
+            </form>
+            <!-- Hidden download link that JS will click -->
+            <a id="actualDownloadLink" style="display:none;" download="gmail-cleaner-script.pdf"></a>
+        </div>
+    </div>
 </body>
 </html>

@@ -42,7 +42,7 @@
     <main class="container mx-auto px-4 py-12 content-area">
         <article class="bg-white p-8 md:p-12 rounded-xl shadow-lg">
             <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 leading-tight">Taming the Inbox Beast: How I Built My Own AI-Powered Gmail Cleaner</h1>
-            <p class="text-lg text-gray-600 mb-8">Published on [4/08/2025] by [Abhishek Sharma]</p>
+            <p class="text-lg text-gray-600 mb-8">Published on [4th August, 2025] by [Abhishek Sharma]</p>
             <img src="https://placehold.co/1000x562/cccccc/333333?text=Gmail+Cleaner+Hero+Image" alt="Image of a clean email inbox with AI elements" class="w-full h-auto max-h-[450px] object-cover rounded-lg mb-10 shadow-md">
             
             <div class="prose max-w-none text-lg leading-relaxed text-gray-700">
@@ -62,7 +62,7 @@
 
                 <h3 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">Challenge 2: The Apps Script Time-Out (The 6-Minute Wall)</h3>
                 <p>Once we started fetching more emails, another beast reared its head: the Google Apps Script execution time limit. Scripts running too long (typically over 6 minutes) get unceremoniously terminated. My initial attempts to fetch and then immediately AI-summarize thousands of emails in one go? They timed out faster than a bad date.</p>
-                <p><strong>Resolution:</strong> More **iterative processing**. Both `fetchEmails` and `analyzeEmailsWithAI` are now designed to be run repeatedly. Each run handles a manageable chunk of work, ensuring it finishes within the time limit. It means a few more clicks from you, but hey, it works! And it gives you a chance to grab a coffee while the AI does its thing.</p>
+                <p><strong>Resolution:</strong> More **iterative processing**. Both `fetchEmails` and `analyzeEmailsWithAI` are now designed to be run repeatedly. Each run handles a manageable chunk of work, ensuring it finishes within the time limit. It means a few more clicks from you, but hey, it's works! And it gives you a chance to grab a coffee while the AI does its thing.</p>
 
                 <h3 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">Challenge 3: The AI's "Too Much Love" (429 Too Many Requests)</h3>
                 <p>Once the emails were in the sheet, it was time for the AI to shine. My initial thought was to unleash Gemini on 500 emails at once for analysis.</p>
